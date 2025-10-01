@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: admin
+  config:
+    import: optional:configserver:http://localhost:9094  # 👈 Pointing to Config Server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/finalproject
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .jsp
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080/
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rajchougulepune98@gmail.com
+    password: ibsm vfic lofv zvmy
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+
+server:
+  port: 9092
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: 
+          - health
+          - info
+          - refresh
